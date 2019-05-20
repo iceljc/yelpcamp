@@ -17,13 +17,14 @@ var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index");
     
-var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v10";
+var url = process.env.DATABASEURL; // "mongodb://localhost/yelp_camp_final"; 
 mongoose.connect(url, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false });
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 app.use(flash());
+app.locals.moment = require('moment');
 // seedDB();
 
 // PASSPORT CONFIGURATION
