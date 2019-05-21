@@ -14,10 +14,11 @@ var express     = require("express"),
 
 //requring routes
 var commentRoutes    = require("./routes/comments"),
+    reviewRoutes     = require("./routes/reviews"),
     campgroundRoutes = require("./routes/campgrounds"),
-    indexRoutes      = require("./routes/index");
+    indexRoutes      = require("./routes/index")
     
-var url = process.env.DATABASEURL; // "mongodb://localhost/yelp_camp_final"; 
+var url = process.env.DATABASEURL; // "mongodb://localhost/yelp_camp_final";
 mongoose.connect(url, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false });
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
@@ -51,6 +52,7 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
+app.use("/campgrounds/:id/reviews", reviewRoutes);
 
 
 app.listen(process.env.PORT, process.env.IP, function(){

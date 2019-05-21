@@ -36,4 +36,6 @@ body {
     display: inline;
 }
 
-
+.checked {
+    color: orange;
+}
